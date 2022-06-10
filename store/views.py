@@ -5,9 +5,10 @@ from .models import Category, Product
 # Create your views here.
 
 
-def categories(request):
-    categories = Category.objects.all()
-    return {'categories': categories}
+def product_all(request):
+    products = Product.products.all()
+    context = {'products': products}
+    return render(request, 'store/home.html', context)
 
 
 def category_list(request, category_slug):
@@ -17,13 +18,7 @@ def category_list(request, category_slug):
     return render(request, 'store/products/category.html', context)
 
 
-def all_products(request):
-    products = Product.objects.all()
-    context = {'products': products}
-    return render(request, 'store/home.html', context)
-
-
 def product_detail(request, slug):
     product = get_object_or_404(Product, slug=slug, in_stock=True)
     context = {'product': product}
-    return render(request, 'store/products/detail.html', context)
+    return render(request, 'store/products/single.html', context)
