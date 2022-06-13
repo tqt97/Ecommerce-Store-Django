@@ -12,6 +12,7 @@ from orders.views import payment_confirmation
 
 from django.conf import settings
 
+
 def order_placed(request):
     basket = Basket(request)
     basket.clear()
@@ -30,14 +31,17 @@ def BasketView(request):
     total = total.replace('.', '')
     total = int(total)
 
-    stripe.api_key = settings.SECRET_KEY
+    stripe.api_key = settings.STRIPE_SECRET_KEY
     intent = stripe.PaymentIntent.create(
         amount=total,
         currency='gbp',
         metadata={'userid': request.user.id}
     )
-
-    return render(request, 'payment/home.html', {'client_secret': intent.client_secret})
+    context = {
+        'STRIPE_PUBLISHABLE_KEY': settings.STRIPE_PUBLISHABLE_KEY,
+        'client_secret': intent.client_secret,
+    }
+    return render(request, 'payment/payment_form.html', context)
 
 
 @csrf_exempt
