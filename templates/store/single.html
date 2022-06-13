@@ -22,19 +22,19 @@
               </h1>
             </div>
             <!-- <div class="d-flex d-flex-inline justify-content-between"> -->
-              <div>
-                <span class="h3">£{{ product.price }}</span>
-                <p class="text-muted">includes tax</p>
-              </div>
-              <div class="">
-                <label for="select">Quantity:</label>
-                <select id="select" class="h6 store-select-dropdown">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                </select>
-              </div>
+            <div>
+              <span class="h3">£{{ product.regular_price }}</span>
+              <p class="text-muted">includes tax</p>
+            </div>
+            <div class="">
+              <label for="select">Quantity:</label>
+              <select id="select" class="h6 store-select-dropdown">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+              </select>
+            </div>
             <!-- </div> -->
             <hr>
             <div class="d-flex d-flex-inline justify-content-between">
@@ -68,8 +68,14 @@
               <div class="col-md-12">
                 <div class="card-body p-1">
                   <div class="bg-light">
-                    <img class="img-fluid mx-auto d-block"
-                      alt="Responsive image" src="{{ product.image.url }}">
+                    {% for image in product.product_image.all %}
+                    {% if image.is_feature %}
+                    <a href="{{ product.get_absolute_url }}">
+                      <img class="img-fluid" alt="{{ image.alt_text }}"
+                        src="{{ image.image.url }}">
+                    </a>
+                    {% endif %}
+                    {% endfor %}
                   </div>
                 </div>
               </div>

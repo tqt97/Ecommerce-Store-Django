@@ -84,8 +84,14 @@ Cart
       <div class="card mb-3 border-0 product-item" data-index="{{product.id}}">
         <div class="row g-0">
           <div class="col-md-2 d-none d-md-block">
-            <img class="img-fluid mx-auto d-block" alt="Responsive image"
-              src="{{ product.image.url }}" />
+            {% for image in product.product_image.all %}
+            {% if image.is_feature %}
+            <a href="{{ product.get_absolute_url }}">
+              <img class="img-fluid" alt="{{ image.alt_text }}"
+                src="{{ image.image.url }}">
+            </a>
+            {% endif %}
+            {% endfor %}
           </div>
           <div class="col-md-10 ps-md-3">
             <div class="card-body p-1">

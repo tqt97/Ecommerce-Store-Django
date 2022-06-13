@@ -18,10 +18,15 @@
         {% for product in products %}
         <div class="col">
           <div class="card border-0">
+            {% for image in product.product_image.all %}
+            {% if image.is_feature %}
             <a href="{{ product.get_absolute_url }}">
-              <img class="img-fluid" alt="Responsive image"
-                src="{{ product.image.url }}">
+              <img class="img-fluid" alt="{{ image.alt_text }}"
+                src="{{ image.image.url }}">
             </a>
+            {% endif %}
+            {% endfor %}
+
             <div class="card-body px-0">
               <p class="card-text">
                 <a class="text-dark text-decoration-none"
@@ -29,7 +34,7 @@
                   {{ product.title|slice:":50" }}...</a>
               </p>
               <div class="fw-bold">
-                £{{product.price}}
+                £{{product.regular_price}}
               </div>
             </div>
           </div>
