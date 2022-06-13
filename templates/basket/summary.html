@@ -22,9 +22,9 @@ Cart
   <div class="row g-3">
     {% if basket|length == 0 %}
     <div class="col-lg-12">
-      <p>Your cart is now empty.</p>
+      <p>Your cart is now <strong>empty</strong>.</p>
       <p>
-        Please <a href="{% url 'store:store_home' %}">continue shopping</a>
+        Please <a href="{% url 'store:store_home' %}" class="text-decoration-none">continue shopping</a>
       </p>
     </div>
     {% else %}
