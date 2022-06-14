@@ -24,8 +24,12 @@
   {% endif %}
   <div class="row g-3">
     {% if deliveryoptions|length == 0 %}
-    <div class="col-12">There are no delivery options
-      <a href="{% url 'store:store_home' %}">Shop</a>
+    <div class="col-12">
+      <p>There are no delivery options or not delivery default </p>
+      <p>
+        Create one  or set delivery options
+        <a href="{% url 'account:addresses' %}">here</a>
+      </p>
     </div>
     {% else %}
     <div class="col-md-4 col-lg-4 order-md-last p-0 order-3">
