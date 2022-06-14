@@ -89,13 +89,20 @@ def account_activate(request, uidb64, token):
         user = Customer.objects.get(pk=uid)
     except (TypeError, ValueError, OverflowError, user.DoesNotExist):
         user = None
-    if user is not None and account_activation_token.check_token(user, token):
-        user.is_active = True
-        user.save()
-        login(request, user)
-        return redirect("account:dashboard")
-    else:
+    # if user is not None and account_activation_token.check_token(user, token):
+    #     user.is_active = True
+    #     user.save()
+    #     login(request, user)
+    #     return redirect("account:dashboard")
+    # else:
+    #     return render(request, "account/registration/activation_invalid.html")
+
+    if user is None or not account_activation_token.check_token(user, token):
         return render(request, "account/registration/activation_invalid.html")
+    user.is_active = True
+    user.save()
+    login(request, user)
+    return redirect("account:dashboard")
 
 
 # Addresses

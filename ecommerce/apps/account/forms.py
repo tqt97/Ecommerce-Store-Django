@@ -102,7 +102,7 @@ class PwdResetForm(PasswordResetForm):
         email = self.cleaned_data["email"]
         u = Customer.objects.filter(email=email)
         if not u:
-            raise forms.ValidationError("Unfortunatley we can not find that email address")
+            raise forms.ValidationError("Oops, we can not find that email address")
         return email
 
 
