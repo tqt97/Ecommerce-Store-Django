@@ -41,9 +41,9 @@ INSTALLED_APPS = [
     "store",
     "basket",
     "account",
-    "payment",
     "orders",
     "mptt",
+    "checkout",
 ]
 
 MIDDLEWARE = [
@@ -149,13 +149,3 @@ PASSWORD_RESET_TIMEOUT_DAYS = 1
 
 # Email settings
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-
-# stripe
-STRIPE_PUBLISHABLE_KEY = (
-    "pk_test_51L9iqPDXdBYDSrRwRjMMm8ZzU0M4jiXrlqy3rm0l59wa2PsayizKKA5jMOBWcxfuZh0mrUnsfAtYay4Yd91gNSIi00powYGv2b"
-)
-STRIPE_SECRET_KEY = (
-    "sk_test_51L9iqPDXdBYDSrRwjvFKRHeiozRqNNggwZtfCujFLSp70NiTDKITA31oPjRLn6WNgrZMJUjUhO5jKcIawHoEyU3600a030nBLX"
-)
-STRIPE_ENDPOINT_SECRET = "whsec_16704f740f39e195fa2024fc0ccac950e37cd624ef0db2a632238066ea968298"
-# stripe listen --forward-to localhost:8000/payment/webhook/

@@ -49,6 +49,10 @@
   {% endfor %}
   {% else %}
   <p class="card-text">No products have been added to your wishlist yet</p>
+  <p>
+    Please <a href="{% url 'store:store_home' %}"
+      class="text-decoration-none">continue shopping</a>
+  </p>
   {% endif %}
 
 
