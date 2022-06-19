@@ -127,7 +127,7 @@ class Product(models.Model):
         return reverse("catalogue:product_detail", args=[self.slug])
 
     def get_title(self):
-        return f"{self.title[:50]}..." if len(self.title) > 50 else self.title
+        return f"{self.title[:30]}..." if len(self.title) > 30 else self.title
 
     def __str__(self):
         return self.title

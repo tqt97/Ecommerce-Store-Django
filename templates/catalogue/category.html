@@ -3,7 +3,15 @@
 {% if category %}{{ category.name }}{% else %}Category{% endif %}
 {% endblock %}
 {% block content %}
-
+<style>
+  .icon-wishlist {
+    position: absolute;
+    top: 0;
+    border: 0;
+    left: 0;
+    color: red;
+  }
+</style>
 <div class="container">
   <div class="col-12">
     <h1 class="h2">{{ category.name|title }}</h1>
@@ -25,13 +33,24 @@
         </p>
       </div>
       {% else %}
-      <div class="row row-cols-1 row-cols-sm-3 row-cols-md-4 g-3">
+      <div class="row">
         {% for product in products %}
-        <div class="col">
-          <div class="card border-0">
+        <div class="col-xs-6 col-sm-4 col-md-4 p-2 g-3">
+          <div class="card border-0 shadow">
             {% for image in product.product_image.all %}
             {% if image.is_feature %}
             <a href="{{ product.get_absolute_url }}">
+              {% if  product in wishlist %}
+              <div class="icon-wishlist">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                  fill="currentColor" class="bi bi-bookmark-heart" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd"
+                    d="M8 4.41c1.387-1.425 4.854 1.07 0 4.277C3.146 5.48 6.613 2.986 8 4.412z" />
+                  <path
+                    d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z" />
+                </svg>
+              </div>
+              {% endif %}
               <img class="img-fluid" alt="{{ image.alt_text }}"
                 src="{{ image.image.url }}">
             </a>
@@ -44,8 +63,8 @@
                 {{ product.get_title | capfirst}}
                 </a>
               </p>
-              <div class="d-flex justify-content-between align-items-center">
-                <small class="text-muted">£{{product.regular_price}}</small>
+              <div class="align-items-center ">
+                <small class="fw-bold text-center">£{{product.regular_price}}</small>
               </div>
             </div>
           </div>

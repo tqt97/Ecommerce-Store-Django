@@ -9,23 +9,10 @@
     left: 0;
     color: red;
   }
-
 </style>
 
 <div class="container">
-  <div class="row">
-    {% if messages %}
-    {% for message in messages %}
-    <div class="alert alert-{{ message.tags }} mb-0 alert-dismissible fade
-          show mb-3" role="alert">
-      {{ message|safe }} - <a href="{% url 'account:wishlist' %}"
-        class="alert-link text-decoration-none text-primary">Your Wishlist</a>
-      <button type="button" class="btn-close" data-bs-dismiss="alert"
-        aria-label="Close">
-      </button>
-      {% endfor %}
-    </div>
-    {% endif %}
+  <div class="row">    
     <div class="album">
       <div class="pb-3">
         <h1 class="h3 text-center">Popular</h1>
@@ -37,13 +24,12 @@
       {% else %}
       <div class="row">
         {% for product in products %}
-        <div class="col-xs-6 col-sm-4 col-md-4 p-2">
+        <div class="col-xs-6 col-sm-4 col-md-4 p-2 g-3">
           <div class="card border-0 shadow">
             {% for image in product.product_image.all %}
             {% if image.is_feature %}
             <a href="{{ product.get_absolute_url }}">
               {% if  product in wishlist %}
-
               <div class="icon-wishlist">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                   fill="currentColor" class="bi bi-bookmark-heart"
@@ -63,7 +49,7 @@
             {% endfor %}
 
             <div class="card-body px-0 text-center">
-              <p class="card-text fw-bolder">
+              <p class="card-text fw-bold">
                 <a class="text-dark text-decoration-none"
                   href="{{ product.get_absolute_url }}">
                   {{ product.get_title | capfirst}}
