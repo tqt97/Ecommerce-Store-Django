@@ -174,4 +174,4 @@ def add_to_wishlist(request, id):
     else:
         product.users_wishlist.add(request.user)
         messages.success(request, f"<b>{product.title}</b> added to your Wishlist")
-    return HttpResponseRedirect(request.META.get("HTTP_REFERER"))
+    return HttpResponseRedirect(request.META.get("HTTP_REFERER")) 

@@ -15,35 +15,35 @@
     {% if messages %}
     {% for message in messages %}
     <div class="alert alert-{{ message.tags }} mb-0 alert-dismissible fade
-      show" role="alert">
+      show mb-3" role="alert">
       {{ message|safe }} - <a href="{% url 'account:wishlist' %}"
         class="alert-link text-decoration-none text-primary">Your Wishlist</a>
-        <button type="button" class="btn-close" data-bs-dismiss="alert"
-          aria-label="Close"></button>
+      <button type="button" class="btn-close" data-bs-dismiss="alert"
+        aria-label="Close">
+      </button>
       {% endfor %}
     </div>
     {% endif %}
-
-    
     <div class="col-md-5 ps-3 col-lg-5 order-md-last order-1">
       <div class="d-grid gap-2">
         <div class="title">
           <h1 class="mb-0 h2 pe-4 pb-4">
             {{ product.title }}
+          
           </h1>
         </div>
         <!-- <div class="d-flex d-flex-inline justify-content-between"> -->
         <div>
           <span class="h3">£{{ product.regular_price }}</span>
-          <p class="text-muted">includes tax</p>
         </div>
-        <div class="">
+        <div class="mt-3">
           <label for="select">Quantity:</label>
           <select id="select" class="h6 store-select-dropdown">
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
+            <option value="4">5</option>
           </select>
         </div>
         <!-- </div> -->
@@ -59,18 +59,13 @@
                 d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
             </svg>
           </button>
-          <!-- <button type="button" id="add-button" value="{{product.id}}"
-                class="btn btn-danger fw500">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                  fill="currentColor" class="bi bi-bag-heart"
-                  viewBox="0 0 16 16">
-                  <path fill-rule="evenodd"
-                    d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5Zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0ZM14 14V5H2v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1ZM8 7.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132Z" />
-                </svg>
-              </button> -->
-          <a href="{% url 'account:user_wishlist' product.id %}"
-            class="btn btn-light fw500 text-danger" role="button"
-            aria-disabled="true">
+
+          <a href="{% url 'account:user_wishlist' product.id %}" class="btn btn-light fw500
+            {% if product in wishlist %}
+              text-danger
+            {% else %}
+              text-default
+            {% endif %}" role="button" aria-disabled="true">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
               fill="currentColor" class="bi bi-bag-heart" viewBox="0 0 16 16">
               <path fill-rule="evenodd"
@@ -78,9 +73,9 @@
             </svg>
           </a>
         </div>
+       
       </div>
     </div>
-
     <div class="col-md-7 col-lg-7 p-0">
       <div class="card mb-3 border-0">
         <div class="row g-0">
@@ -100,6 +95,12 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+  <div class="col-12">
+    <h3>Description</h3>
+    <div>
+      {{ product.description }}
     </div>
   </div>
 </div>

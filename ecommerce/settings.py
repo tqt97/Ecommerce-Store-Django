@@ -14,7 +14,7 @@ SECRET_KEY = "django-insecure-l=dh6ona0@-yc0_hi1c(jdk2@84gb+9sdjthy^eoqs+z4&ri8d
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["yourdomain.com", "127.0.0.1", "localhost"]
+ALLOWED_HOSTS = ["yourdomain.com", "127.0.0.1", "localhost", "https://tqt-shop.herokuapp.com"]
 
 
 # Application definition
@@ -32,10 +32,12 @@ INSTALLED_APPS = [
     "ecommerce.apps.basket",
     "ecommerce.apps.orders",
     "mptt",
+    # "debug_toolbar",
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    # "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -137,3 +139,11 @@ PASSWORD_RESET_TIMEOUT_DAYS = 1
 
 # Email settings
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+
+# debug
+# INTERNAL_IPS = [
+#     # ...
+#     "127.0.0.1",
+#     # ...
+# ]

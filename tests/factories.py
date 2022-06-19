@@ -1,13 +1,11 @@
 import factory
-from ecommerce.apps.account.models import Address, Customer
-from ecommerce.apps.catalogue.models import (
-    Category,
-    Product,
-    ProductSpecification,
-    ProductSpecificationValue,
-    ProductType,
-)
 from faker import Faker
+
+from ecommerce.apps.account.models import Address, Customer
+from ecommerce.apps.catalogue.models import (Category, Product,
+                                             ProductSpecification,
+                                             ProductSpecificationValue,
+                                             ProductType)
 
 fake = Faker()
 

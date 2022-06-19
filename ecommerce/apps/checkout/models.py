@@ -14,7 +14,7 @@ class DeliveryOptions(models.Model):
     ]
 
     delivery_name = models.CharField(
-        verbose_name=_("delivery_name"),
+        verbose_name=_("delivery name"),
         help_text=_("Required"),
         max_length=255,
     )
@@ -47,8 +47,11 @@ class DeliveryOptions(models.Model):
     )
     order = models.IntegerField(verbose_name=_("list order"), help_text=_("Required"), default=0)
     is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
+        ordering=("-created_at",)
         verbose_name = _("Delivery Option")
         verbose_name_plural = _("Delivery Options")
 

@@ -26,7 +26,7 @@ urlpatterns = [
     path("account/", include("ecommerce.apps.account.urls", namespace="account")),
     path("orders/", include("ecommerce.apps.orders.urls", namespace="orders")),
     path("", include("ecommerce.apps.catalogue.urls", namespace="catalogue")),
-    # path("__debug__/", include(debug_toolbar.urls)),
+    path("__debug__/", include(debug_toolbar.urls)),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  # pragma: no cover

@@ -44,8 +44,11 @@ class ProductType(models.Model):
 
     name = models.CharField(verbose_name=_("Product Name"), help_text=_("Required"), max_length=255, unique=True)
     is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(_("Created at"), auto_now_add=True, editable=False)
+    updated_at = models.DateTimeField(_("Updated at"), auto_now=True)
 
     class Meta:
+        ordering = ("-created_at",)
         verbose_name = _("Product Type")
         verbose_name_plural = _("Product Types")
 
@@ -122,6 +125,9 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse("catalogue:product_detail", args=[self.slug])
+
+    def get_title(self):
+        return f"{self.title[:50]}..." if len(self.title) > 50 else self.title
 
     def __str__(self):
         return self.title
