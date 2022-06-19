@@ -37,11 +37,11 @@
             </a>
             {% endif %}
             {% endfor %}
-            <div class="card-body px-0">
+            <div class="card-body px-0 text-center" >
               <p class="card-text">
-                <a class="text-dark text-decoration-none"
+                <a class="text-dark text-decoration-none fw-bold"
                   href="{{ product.get_absolute_url }}">
-                  {{ product.title }}
+                {{ product.get_title | capfirst}}
                 </a>
               </p>
               <div class="d-flex justify-content-between align-items-center">
