@@ -1,6 +1,8 @@
 import os
 from pathlib import Path
 
+import django_heroku
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -147,3 +149,4 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 #     "127.0.0.1",
 #     # ...
 # ]
+django_heroku.settings(locals())
